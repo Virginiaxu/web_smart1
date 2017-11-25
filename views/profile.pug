@@ -1,4 +1,28 @@
 extends header
 
 block content
-	p.name This is the profile page!
+    p.name This is the profile page!
+    div.col-sm-6
+        .h3 Facebook
+        .p #{user.facebook.id}
+        .p #{user.facebook.email}
+        .p #{user.facebook.name}
+    div.col-sm-6
+        .h3 Google
+        .p #{user.google.id}
+        .p #{user.google.token}
+        .p #{user.google.email}
+        .p #{user.google.name}
+    div.col-sm-6
+        .h3 Twittwe
+        .p #{user.twitter.id}
+        .p #{user.twitter.token}
+        .p #{user.twitter.username}
+        .p #{user.twitter.displayName}
+    div
+        a.btn.btn-primary(href='logout') logout
+    div.form(action="/profile" method="post")
+        div(class="form-group") 
+            label.form-label Browse:
+            input(type="file" class="form-control" id = "imgs" name = "imgs")
+        button(type="submit" class="btn btn-default") Submit!        
