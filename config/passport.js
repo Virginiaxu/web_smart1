@@ -2,6 +2,8 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 
+
+
 var User = require('../models/user');
 var configAuth = require('./auth');
 
@@ -45,6 +47,9 @@ module.exports = function (passport) {
 
                     // if the user is found, then log them in
                     if (user) {
+                        const payload = {
+                            sub: user.facebook.id
+                        }
                         console.log("old user!!!!");
                         return done(null, user); // user found, return that user
                     } else {

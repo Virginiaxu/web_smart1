@@ -1,4 +1,27 @@
-extends header
+extends header 
 
 block content
-	p.name This is the upload page!
+	div(class="container" id="upload-form")
+		div.col-md-6.col-md-offset-3
+			p.form-head Upload and Analyze!
+			form(action="/upload" method="post" style="margin-bottom : 50px;" enctype="multipart/form-data")
+					div(class="form-group" style="padding-top: 25px;")
+						label.form-label Job Name :
+						input(type="text" class="form-control" id="name" name="project")
+						div.form-check
+							label.form-label Share to Our Database
+								input(type="checkbox" class="form-check-input" data-toggle="collapse" data-target="#collapseOne" name="share" checked)
+							p
+								| By clicking on this box, you have agreed to share your images to our database. 
+								|It is highly encouraged to share your data with us to improve the accuracy and efficiency of our deep learning algorithm. 
+						div(id="collapseOne" class="panel-collapse collapse in")
+							div.form-check
+								label.form-label Visible to Public
+									input(type="checkbox" class="form-check-input" name="visible" checked)
+								p 
+									| By clicking on this box, your small molecule structure will become a part of our molecule cluster
+									| and become visible to other users. We encourage you to do so as your structure might become a valuable resource for the entire scientific field.
+						label.form-label Upload your images :
+						input(type="file" class="form-control" accept=".png" id="images" name="images" multiple)
+					div.text-center
+						button(type="submit" class="btn btn-default") Submit!

@@ -17,7 +17,7 @@ function isLoggedIn(req, res, next) {
 }
 
 
-
+//need to verify the token
 router.post("/", function (req, res, next) {
 
 })
