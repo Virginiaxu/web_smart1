@@ -10,10 +10,13 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "express-flash": "0.0.2",
     "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.4",
     "morgan": "~1.9.0",
+    "multer": "^1.3.0",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
@@ -21,6 +24,7 @@
     "passport-google-oauth": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "pug": "2.0.0-beta11",
+    "req-flash": "0.0.3",
     "serve-favicon": "~2.4.5"
   }
 }

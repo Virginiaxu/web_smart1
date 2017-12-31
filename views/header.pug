@@ -7,6 +7,7 @@ html
 		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
 		script(src="/public/javascripts/jquery-3.2.1.min.js")
 		script(src="/public/javascripts/bootstrap.min.js")
+		link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
 
 	body
 		div(class="navbar navbar-default" role="navigation" id="navbar")
@@ -20,38 +21,12 @@ html
 				div(class="navbar-collapse collapse" id="navbar-collapse")
 					ul.nav.navbar-nav.navbar-left
 						li
-							a(href="/tutorial") Tutorial
-						li
-							a(href="/upload") Upload
+							a(href="/tutorial") Getting Started
 						li
 							a(href="/About") About
 						li 
 							a(href="/Donate") Donate
 					ul.nav.navbar-nav.navbar-right
 						li
-							a(href="#" data-toggle="modal" data-target="#mymodal") Sign In
-			
-
-
-		div(class="modal", id = "mymodal")
-			.div(class="modal-dialog")
-				.div(class="modal-content")
-					.div(class="modal-header")
-						button(class="close" type="button" data-dismiss="modal") X
-						h2(class="modal-title") Sign In
-						.form-group
-							.col-sm-offset-3.col-sm-7
-								a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
-									i.fa.fa-facebook
-									| Sign in with Facebook
-								a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
-									i.fa.fa-twitter
-									| Sign in with Twitter
-								a.btn.btn-block.btn-google.btn-social(href='/auth/google')
-									i.fa.fa-google-plus
-									| Sign in with Google
-					
-
-
-
-	block content
+							a(href="/signin") Sign In
+		block content

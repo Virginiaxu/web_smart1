@@ -3,14 +3,14 @@
     "",
     "\\bin",
     "\\config",
-    "\\models",
     "\\public",
-    "\\public\\images",
-    "\\public\\javascripts",
     "\\public\\stylesheets",
-    "\\routes",
-    "\\views"
+    "\\public\\stylesheets\\lib\\font-awesome",
+    "\\public\\stylesheets\\themes",
+    "\\public\\stylesheets\\themes\\default",
+    "\\views",
+    "\\views\\partials"
   ],
-  "SelectedNode": "\\views\\login.pug",
+  "SelectedNode": "\\public\\stylesheets\\lib",
   "PreviewInSolutionExplorer": false
 }

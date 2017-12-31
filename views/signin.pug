@@ -1,0 +1,35 @@
+doctype html
+html
+	head
+		title Smart Website
+		link(rel='stylesheet', href='/public/stylesheets/style.css')
+		link(rel='stylesheet', href='/public/stylesheets/bootstrap-social.scss')
+		link(rel='stylesheet', href='/public/stylesheets/bootstrap.min.css')
+		link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		script(src="/public/javascripts/jquery-3.2.1.min.js")
+		script(src="/public/javascripts/bootstrap.min.js")
+
+
+	body(id="signin-container")
+		div.row
+			div.col-lg-12
+				include partials/flash
+		div.row
+			div.col-lg-4
+				a(href="/" class="homelink") < SMART
+		.signinbox
+			img.avatar(src="/public/images/avatar.jpg")
+			h1.signinfont Sign In
+			div.form-buttons
+				div.buttons
+					a(href="/auth/google" class="google-button") Google
+					i(class="fa fa-google" aria-hidden="true")
+				div.buttons
+					a(href="/auth/facebook" class="facebook-button") Facebook
+					i(class="fa fa-facebook" aria-hidden="true")
+				div.buttons
+					a(href="/auth/twitter" class="twitter-button") Twitter 
+					i(class="fa fa-twitter" aria-hidden="true")
+		
+					

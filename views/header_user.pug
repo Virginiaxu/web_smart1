@@ -1,0 +1,32 @@
+doctype html
+html
+	head
+		title Smart Website
+		link(rel='stylesheet', href='/public/stylesheets/style.css')
+		link(rel='stylesheet', href='/public/stylesheets/bootstrap.min.css')
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		script(src="/public/javascripts/jquery-3.2.1.min.js")
+		script(src="/public/javascripts/bootstrap.min.js")
+
+	body
+		div(class="navbar navbar-default" role="navigation" id="navbar")
+			div.container-fluid
+				div.navbar-header
+					button(type="button", class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a(class="navbar-brand" href="/") SMART
+				div(class="navbar-collapse collapse" id="navbar-collapse")
+					ul.nav.navbar-nav.navbar-left
+						li
+							a(href="/tutorial") Tutorial
+						li
+							a(href="/About") About
+						li 
+							a(href="/Donate") Donate
+					ul.nav.navbar-nav.navbar-right
+						li
+							a(href="/logout") Log out
+
+	block content

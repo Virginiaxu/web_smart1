@@ -8,25 +8,23 @@ var passport = require("passport");
 var configDB = require('./config/database.js');
 var mongoose = require('mongoose');
 var session = require("express-session");
+var flash = require('express-flash');
 
-var index = require('./routes/index');
+var home = require('./routes/home');
 var about = require('./routes/about');
 var tutorial = require('./routes/tutorial');
-var upload = require('./routes/upload');
 var donate = require('./routes/donate');
-var signup = require('./routes/signup');
-var login = require('./routes/login'); 
-var profile = require('./routes/profile');
-
+var signin = require('./routes/signin');
+var user = require('./routes/user');
 
 var app = express();
-
 mongoose.connect(configDB.url);
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: '111a9f7bd94518b0a3ce374e5e406036faed5bbb',cookie: { maxAge: 60000 }})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+app.use(flash());
 require('./config/passport')(passport);
 
 require('./routes/auth')(app, passport); 
@@ -46,15 +44,14 @@ app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', index);
+app.use('/', home);
 app.use('/about', about);
 app.use('/donate', donate);
-app.use('/login', login);
-app.use('/signup', signup);
-app.use("/upload", upload);
-app.use('/tutorial', tutorial);
 
-app.use('/profile', profile);
+app.use('/tutorial', tutorial);
+app.use('/signin', signin);
+
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
