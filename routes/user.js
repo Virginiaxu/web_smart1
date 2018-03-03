@@ -9,23 +9,50 @@ const Job = require("../models/job");
 var multer = require('multer');
 var upload = multer({ limits: { fileSize: 2000000 }, dest: '/uploads/' })
 
-router.get('/', isLoggedIn, function (req, res, next) {
-    var sessData = req.session;
-    sessData.user_id = req.user._id;
-    console.log(req.user._id);
-    console.log(req.session.user_id);
-
-    res.render('user', {user: req.user});
+router.get('/', isAuthenticated, function (req, res, next) {
+    res.render('user');
 });
 
+router.post('/account', isAuthenticated, upload.array('images', 12),function (req, res, next) {
+    var user_id = req.user.id;
+ 
+    User.findById(user_id, function (err, user) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            console.log("posted name is " + req.body.fname);
+            console.log("posted last name is " + req.body.lname)  
+            if (req.body.fname) {
+                user.profile.fname = req.body.fname;
+                console.log("profile first name is " + user.profile.fname);
+            }
+            if (req.body.lname) {
+                user.profile.fname = req.body.fname;
+            }
+            if(req.body.aemail)
+                user.profile.aemail = req.body.aemail;
+            if (req.body.labname)
+                user.profile.labname = req.body.labname;
+            user.save(function (err, user) {
+                console.log("saving......")
+                if (err) {
+                    res.status(500).send(err)
+                }
+                console.log(user.profile.fname)
+                res.redirect("/user/account");
+            }); 
+        }
+    })
+   
+});
 
-router.get('/upload', function (req, res, next) {
-    
+router.get('/upload', isAuthenticated, function (req, res, next) {
     res.render('upload');
 });
 
-router.get('/previous', function (req, res, next) {
-    var user_id = req.session.user_id;
+router.get('/previous', isAuthenticated, function (req, res, next) {
+    var user_id = req.user.id;
+    console.log("user id is " + user_id)
     Job.find().where('user_id').equals(user_id).exec(function (err, jobs) {
         if (err) {
             console.log(err);
@@ -36,8 +63,8 @@ router.get('/previous', function (req, res, next) {
 });
 
 
-
-router.post('/upload', upload.array('images', 12), function (req, res, next) {
+router.post('/upload', isAuthenticated, upload.array('images', 12), function (req, res, next) {
+    console.log("job name is " + req.body.name)
     var imagesArray = [];
     var files = req.files;
     for (index in files) {
@@ -74,21 +101,19 @@ router.post('/upload', upload.array('images', 12), function (req, res, next) {
     res.redirect("/user");
 })
 
-router.get('/account', function (req, res, next) {
+router.get('/account', isAuthenticated, function (req, res, next) {
 
     res.render('account');
 });
 
 
-function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
+    }
+    res.redirect('/signup');
+};
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
 
 
 //need to verify the token

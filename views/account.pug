@@ -18,8 +18,59 @@ block content
 				div(class="row")
 					div(class="col-lg-12")
 						a(href="#" class="btn btn-success" id="menu-toggle") Toggle Menu
-						p1 Facebook: 
-
+						div.container
+							div.row
+								div.col-md-6
+									p.form-head Welcome!
+									if user.profile.fname || user.profile.lname
+										form(action="/user/account" method="put" style="margin-bottom : 50px;" enctype="multipart/form-data")
+											div.row
+												div.col-xs-8
+													h3 #{user.profile.fname} #{user.profile.fname}
+												div.col-xs-4
+													button(type="submit" class="updatebutton") Edit!
+							
+									else
+										form(action="/user/account" method="post" style="margin-bottom : 50px;" enctype="multipart/form-data")
+											label.form-label Please Provide Your Real Name:
+											div.row
+												div.col-xs-4
+													input(type="text" class="form-control" name="fname" id="fname" placeholder="First Name")
+												div.col-xs-4
+													input(type="text" class="form-control" name="lname" id="lname" placeholder="Last Name")
+												div.col-xs-4
+													button(type="submit" class="updatebutton") Update!
+									
+										
+									form(action="/user/account" method="post" style="margin-bottom : 50px;" enctype="multipart/form-data")
+										if user.profile.aemail
+											div.row
+												div.col-xs-8
+													h3 email: #{user.profile.aemail}
+												div.col-xs-4
+													button(type="submit" class="updatebutton") Edit!
+										else
+											label.form-label Please Provide Your Academic Email:
+											div.row
+												div.col-xs-8
+													input(type="text" class="form-control" name="aemail" placeholder="Academic Email")
+												div.col-xs-4
+													button(type="submit" class="updatebutton") Update!
+									form(action="/user/account" method="post" style="margin-bottom : 50px;" enctype="multipart/form-data")
+										if user.profile.labname
+											div.row
+												div.col-xs-8
+													h3 labname: #{user.profile.labname}
+												div.col-xs-4
+													button(type="submit" class="updatebutton") Edit!
+										else
+											label.form-label Please Provide Your Lab Name:
+											div.row
+												div.col-xs-8
+													input(type="text" class="form-control" name="labname" placeholder="Lab Name")
+												div.col-xs-4
+													button(type="submit" class="updatebutton") Update!
+																	
 	script.
 		$("#menu-toggle").click( function (e){
 			e.preventDefault();

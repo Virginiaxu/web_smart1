@@ -18,6 +18,9 @@
     background-color: #0C2640;
 }
 
+
+
+
 .navbar-fixed-top {
     top: 0;
 }
@@ -405,3 +408,48 @@ header.major {
     color: white;
     padding: 20px 40px;
 }
+
+.job-container{
+    border: 3px solid #036580;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 300px;
+}
+
+
+.dropdown-toggle {
+    background-color: #036580 !important;
+}
+
+    .dropdown-toggle:hover {
+        background-color: #0C2640!important;
+    }
+
+
+.dropdown-menu {
+    background-color: #036580!important;
+    
+}
+
+    .dropdown-menu li a:hover {
+        background-color: #0C2640!important;
+        color: white !important;
+    }
+
+.updatebutton {
+    background-color: white;
+    color: #036580;
+    font-size: 20px;
+    border: 3px solid #036580;
+    border-radius: 5px;
+}
+
+.updatebutton:hover {
+    background-color: #036580;
+    color: white;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+

@@ -15,16 +15,32 @@ var about = require('./routes/about');
 var tutorial = require('./routes/tutorial');
 var donate = require('./routes/donate');
 var signin = require('./routes/signin');
+var register = require('./routes/register');
 var user = require('./routes/user');
+const MongoStore = require('connect-mongo')(session);
 
 var app = express();
 mongoose.connect(configDB.url);
 
 // required for passport
-app.use(session({ secret: '111a9f7bd94518b0a3ce374e5e406036faed5bbb',cookie: { maxAge: 60000 }})); // session secret
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: '111a9f7bd94518b0a3ce374e5e406036faed5bbb',
+    store: new MongoStore({
+        url: "mongodb://localhost/smart3",
+        //url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+        autoReconnect: true,
+        clear_interval: 3600
+    })
+}));
+//app.use(session({ secret: '111a9f7bd94518b0a3ce374e5e406036faed5bbb',cookie: { maxAge: 60000 }})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
+
+
+
 require('./config/passport')(passport);
 
 require('./routes/auth')(app, passport); 
@@ -33,6 +49,10 @@ require('./routes/auth')(app, passport);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -50,6 +70,7 @@ app.use('/donate', donate);
 
 app.use('/tutorial', tutorial);
 app.use('/signin', signin);
+app.use('/register', register);
 
 app.use('/user', user);
 

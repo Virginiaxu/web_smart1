@@ -23,10 +23,23 @@ html
 						li
 							a(href="/tutorial") Getting Started
 						li
-							a(href="/About") About
+							a(href="/about") About
 						li 
-							a(href="/Donate") Donate
+							a(href="/donate") Donate
 					ul.nav.navbar-nav.navbar-right
-						li
-							a(href="/signin") Sign In
+						if !user
+							li
+								a(href="/signin") Sign In
+								
+						else
+							li.dropdown
+								a.dropdown-toggle(href='#', data-toggle='dropdown')
+									span= user.profile.name || user.email || user.id
+									i.caret
+								ul(class="dropdown-menu" id="dropdown")
+									li
+										a(href='/user') My Account
+									li.divider
+									li
+										a(href='/logout') Logout
 		block content

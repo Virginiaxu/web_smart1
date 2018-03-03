@@ -33,8 +33,12 @@ var userSchema = mongoose.Schema({
     profile:
     {
         name: String,
+        aemail: { type: String, default: "" },
         picture: String,
-        location: String
+        location: String,
+        fname: { type: String, default: "" },
+        lname: { type: String, default: "" },
+        labname: { type:String, default:"" },
     }
 }, { timestamps: true });
 

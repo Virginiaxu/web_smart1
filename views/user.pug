@@ -1,4 +1,4 @@
-extends header_user
+extends header
 
 block content
 	div(id="wrapper")
@@ -17,15 +17,8 @@ block content
 			div(class="container-fluid")
 				div(class="row")
 					div(class="col-lg-12")
-						a(href="#" class="btn btn-success" id="menu-toggle") =
-						h1 Sidebar layouts are cool
-						p1 I love apple
-						p1 Username: #{user.profile.name}
-						p1 email: #{user.email}
-						p1 facebook: #{user.facebook}
-						p1 google: #{user.google}
-						p1 twitter: #{user.twitter}
-						
+						a(href="#" class="btn btn-success" id="menu-toggle") toggle
+						h1 Welcome!
 
 	script.
 		$("#menu-toggle").click( function (e){

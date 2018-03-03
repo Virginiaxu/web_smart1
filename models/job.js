@@ -6,8 +6,7 @@ var imageSchema = mongoose.Schema({
 })
 
 var jobSchema = mongoose.Schema({
-    id: String,
-    user_id: String,
+    user_id: { type: mongoose.Schema.ObjectId, ref: 'user' },
     name: String,
     share: Boolean,
     visible: Boolean,

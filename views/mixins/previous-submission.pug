@@ -1,3 +1,6 @@
-mixin previous_submission(data)
-	div.row
-		
+mixin previous_submission(data, index)
+	div.job-container
+		h1 #{data.name}
+		p #{data.time}
+		p #{index}
+		a(href="#") View More >
